@@ -41,7 +41,6 @@ export default function Academics() {
         </div>
         <Outlet/>
       </div>
-      <h2>Hello world</h2>
     </div>
   )
 }
