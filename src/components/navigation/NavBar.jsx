@@ -8,7 +8,7 @@ export default function NavBar() {
                <NavLink to="/">Home</NavLink>
                <NavLink to="about">About Us</NavLink>
                <NavLink to="academics">Academics</NavLink>
-               <NavLink to="admission">Admissions</NavLink>
+               <NavLink to="admissions">Admissions</NavLink>
                <NavLink to="contacts">Contact Us</NavLink>
               </div>
     </div>
