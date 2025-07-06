@@ -5,7 +5,7 @@ const Curriculum = () => {
     <div className="bg-gray-700 rounded py-12 px-6 md:px-16 lg:px-24">
       <div className="max-w-7xl mx-auto">
         {/* Shared heading */}
-        <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-800 mb-12">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
           Muko H/S Curriculum
         </h2>
 
