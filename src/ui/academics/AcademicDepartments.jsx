@@ -3,7 +3,7 @@ import imageOne from "..//../assets/co.jpg";
 import imageTwo from "..//../assets/ent.jpg";
 import imageThree from "..//../assets/selfie.jpg";
 import imageFour from "..//../assets/academics.jpeg";
-const departments = [
+ const departments = [
   {
     name: "Sciences Department",
     img: imageFour,
@@ -30,31 +30,20 @@ const departments = [
   },
 ];
 
-const AcademicDepartments = () => {
+export const AcademicDepartments = () => {
   return (
-    <div className="bg-gray-700 py-12 px-6 md:px-16 lg:px-24">
+    <div className=" py-8 px-3 md:px-10">
       <div className="max-w-7xl mx-auto">
         {/* Title */}
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
-          Academic Departments
-        </h2>
+        <h2 className="text-xl md:text-5xl font-bold text-center mb-12">Academic Departments</h2>
 
         {/* Departments Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2  gap-8">
           {departments.map((dept, index) => (
-            <div
-              key={index}
-              className="bg-gray-100 rounded-2xl shadow overflow-hidden flex flex-col"
-            >
-              <img
-                src={dept.img}
-                alt={dept.name}
-                className="w-full h-48 object-cover"
-              />
+            <div key={index} className="bg-gray-100 rounded-2xl shadow overflow-hidden flex flex-col">
+              <img src={dept.img} alt={dept.name} className="h-30 object-cover" />
               <div className="p-6 flex-grow flex flex-col">
-                <h3 className="text-xl font-bold text-gray-700 mb-2">
-                  {dept.name}
-                </h3>
+                <h3 className="text-xl font-bold text-gray-700 mb-2">{dept.name}</h3>
                 <p className="text-gray-600">{dept.description}</p>
               </div>
             </div>
@@ -64,5 +53,3 @@ const AcademicDepartments = () => {
     </div>
   );
 };
-
-export default AcademicDepartments;
