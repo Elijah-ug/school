@@ -7,10 +7,7 @@ import { SiBookstack } from "react-icons/si";
 import { Link, NavLink } from "react-router-dom";
 
 export const NavBar = () => {
-  const [isHovered, setIsHovered] = useState(false);
-  useEffect(() => {
-    console.log(isHovered);
-  }, [isHovered]);
+ 
   return (
     <div className="sm:flex hidden items-center justify-between px-10 bg-green-700 font-bold py-3 sm:py-5 text-amber-400">
       <Link to="/" className="text-gray-800">

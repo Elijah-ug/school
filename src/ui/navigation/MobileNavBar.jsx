@@ -1,99 +1,134 @@
-import { useEffect, useState } from "react";
-import { BiFootball } from "react-icons/bi";
+import { useState } from "react";
 import { FaBars } from "react-icons/fa6";
-import { FcDepartment } from "react-icons/fc";
-import { GiTeacher } from "react-icons/gi";
-import { HiAcademicCap } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
-import { SiBookstack } from "react-icons/si";
+import { MdOutlineArrowDropDown, MdOutlineArrowDropUp } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
 
 export const MobileNavBar = () => {
-  const [isActive, setIsActive] = useState(false);
-  const handleIsActive = () => {
-    console.log(isActive);
-    setIsActive(!isActive);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(""); // track which dropdown is open
+
+  const toggleDropdown = (name) => {
+    setOpenDropdown(openDropdown === name ? "" : name);
   };
+
   return (
-    <div className="flex sm:hidden items-center justify-between px-10 bg-green-700 font-bold py-3 sm:py-5 text-amber-400">
-      <Link to="/" className="text-gray-800">
+    <div className="flex sm:hidden items-center justify-between px-5 bg-green-700 font-bold py-3 text-amber-400 relative">
+      <Link to="/" className="text-gray-800 text-xl">
         MHS
       </Link>
-      <div className="flex flex-col items-end relative">
-        <button onClick={handleIsActive}>{isActive ? <IoClose /> : <FaBars />}</button>
-        <div className={isActive ? " absolute top-8 z-20 flex flex-col px-15 py-3 gap-5 bg-stone-500 " : "hidden"}>
-          <NavLink onClick={() => setIsActive(false)} to="/">
+
+      <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        {isMenuOpen ? <IoClose size={24} /> : <FaBars size={24} />}
+      </button>
+
+      {isMenuOpen && (
+        <div className="absolute top-full right-0 w-full bg-stone-700 flex flex-col gap-2 p-4 z-50">
+          <NavLink onClick={() => setIsMenuOpen(false)} to="/" className="py-2 px-3 hover:bg-green-600 rounded">
             Home
           </NavLink>
 
-          {/* about part */}
-          <div className="relative group">
-            <span>About Us</span>
-            <div className="absolute top-full left-0 hidden group-hover:flex flex-col gap-8 bg-blue-400 p-4 z-50 min-w-[300px] text-gray-200 rounded">
-              <NavLink onClick={() => setIsActive(false)} to="about/history" className=" flex gap-3 items-center">
-                History
-              </NavLink>
-              <NavLink
-                onClick={() => setIsActive(false)}
-                to="about/mission-and-vission"
-                className="flex gap-3 items-center "
-              >
-                Mission and Vission
-              </NavLink>
-              <NavLink onClick={() => setIsActive(false)} to="about/facilities" className="flex gap-3 items-center ">
-                Facilities
-              </NavLink>
-              <NavLink onClick={() => setIsActive(false)} to="about/core-values" className=" flex gap-3 items-center">
-                Core Values
-              </NavLink>
-            </div>
+          {/* About Us */}
+          <div className="flex flex-col">
+            <button
+              onClick={() => toggleDropdown("about")}
+              className="flex justify-between items-center py-2 px-3 hover:bg-green-600 rounded"
+            >
+              About Us
+              <span>{openDropdown === "about" ? <MdOutlineArrowDropUp /> : <MdOutlineArrowDropDown />}</span>
+            </button>
+            {openDropdown === "about" && (
+              <div className="flex flex-col pl-15 mt-2 gap-1">
+                <NavLink onClick={() => setIsMenuOpen(false)} to="about/history" className="py-1 hover:text-yellow-300">
+                  History
+                </NavLink>
+                <NavLink
+                  onClick={() => setIsMenuOpen(false)}
+                  to="about/mission-and-vission"
+                  className="py-1 hover:text-yellow-300"
+                >
+                  Mission & Vision
+                </NavLink>
+                <NavLink
+                  onClick={() => setIsMenuOpen(false)}
+                  to="about/facilities"
+                  className="py-1 hover:text-yellow-300"
+                >
+                  Facilities
+                </NavLink>
+                <NavLink
+                  onClick={() => setIsMenuOpen(false)}
+                  to="about/core-values"
+                  className="py-1 hover:text-yellow-300"
+                >
+                  Core Values
+                </NavLink>
+              </div>
+            )}
           </div>
 
-          {/* academics part */}
-          <div className="relative group">
-            <span to="academics">Academics</span>
-            <div className="absolute top-full left-0 hidden group-hover:flex flex-col gap-8 bg-blue-400 p-4 z-50 min-w-[300px] text-gray-200 rounded">
-              <NavLink onClick={() => setIsActive(false)} to="academics/overview" className=" flex gap-3 items-center">
-                Academics Overview
-              </NavLink>
-              <NavLink
-                onClick={() => setIsActive(false)}
-                to="academics/academic-departments"
-                className="flex gap-3 items-center "
-              >
-                Departments
-              </NavLink>
-              <NavLink
-                onClick={() => setIsActive(false)}
-                to="academics/curriculum"
-                className="flex gap-3 items-center "
-              >
-                Curriculum
-              </NavLink>
-              <NavLink
-                onClick={() => setIsActive(false)}
-                to="academics/co-curriculars"
-                className=" flex gap-3 items-center"
-              >
-                Cocurriculars
-              </NavLink>
-              <NavLink
-                onClick={() => setIsActive(false)}
-                to="academics/teaching-and-assessment"
-                className="flex gap-3 items-center"
-              >
-                Teaching and Assessment
-              </NavLink>
-            </div>
+          {/* Academics */}
+          <div className="flex flex-col mt-2">
+            <button
+              onClick={() => toggleDropdown("academics")}
+              className="flex justify-between items-center py-2 px-3 hover:bg-green-600 rounded"
+            >
+              <span>Academics</span>
+              <span>{openDropdown === "academics" ? <MdOutlineArrowDropUp /> : <MdOutlineArrowDropDown />}</span>
+            </button>
+            {openDropdown === "academics" && (
+              <div className="flex flex-col pl-15 mt-2 gap-1">
+                <NavLink
+                  onClick={() => setIsMenuOpen(false)}
+                  to="academics/overview"
+                  className="py-1 hover:text-yellow-300"
+                >
+                  Overview
+                </NavLink>
+                <NavLink
+                  onClick={() => setIsMenuOpen(false)}
+                  to="academics/academic-departments"
+                  className="py-1 hover:text-yellow-300"
+                >
+                  Departments
+                </NavLink>
+                <NavLink
+                  onClick={() => setIsMenuOpen(false)}
+                  to="academics/curriculum"
+                  className="py-1 hover:text-yellow-300"
+                >
+                  Curriculum
+                </NavLink>
+                <NavLink
+                  onClick={() => setIsMenuOpen(false)}
+                  to="academics/co-curriculars"
+                  className="py-1 hover:text-yellow-300"
+                >
+                  Cocurriculars
+                </NavLink>
+                <NavLink
+                  onClick={() => setIsMenuOpen(false)}
+                  to="academics/teaching-and-assessment"
+                  className="py-1 hover:text-yellow-300"
+                >
+                  Teaching & Assessment
+                </NavLink>
+              </div>
+            )}
           </div>
-          <NavLink onClick={() => setIsActive(false)} to="admissions">
+
+          <NavLink
+            onClick={() => setIsMenuOpen(false)}
+            to="admissions"
+            className="py-2 px-3 hover:bg-green-600 rounded"
+          >
             Admissions
           </NavLink>
-          <NavLink onClick={() => setIsActive(false)} to="contacts">
+          <NavLink onClick={() => setIsMenuOpen(false)} to="contacts" className="py-2 px-3 hover:bg-green-600 rounded">
             Contact Us
           </NavLink>
         </div>
-      </div>
+      )}
     </div>
   );
 };

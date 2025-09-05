@@ -1,9 +1,29 @@
 import React from "react";
 // dummy images from obs
-import imageOne from "..//../assets/co.jpg";
-import imageTwo from "..//../assets/co.jpg";
-import imageThree from "..//../assets/co.jpg";
-import imageFour from "..//../assets/co.jpg";
+import imageOne from "..//../assets/dummy-img.jpeg";
+
+const oldStudents = [
+  {
+    image: imageOne,
+    name: "Mark Zuckerberg",
+    testmonial: "The school taught me resilience and leadership skills I still use toda",
+  },
+  {
+    image: imageOne,
+    name: "Jeff Bezo",
+    testmonial: "I met lifelong friends and learned the value of hard work here",
+  },
+  {
+    image: imageOne,
+    name: "Elon Musk",
+    testmonial: "This school helped me discover my passion for science",
+  },
+  {
+    image: imageOne,
+    name: "Satoshi Nakamoto",
+    testmonial: "’ll always cherish the memories and supportive community",
+  },
+];
 export const Alumni = () => {
   return (
     <div className="min-h-screen pt-3 bg-gray-8000 px-3 sm:px-10 rounded">
@@ -18,32 +38,13 @@ export const Alumni = () => {
       <div className="imgs">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:p-8  rounded">
           {/* <!-- Card 1 --> */}
-          <div className="bg-gray-800 rounded-2xl shadow p-4 flex flex-col items-center text-center">
-            <img src={imageOne} alt="Alumnus 1" className="w-32 h-32 rounded-full object-cover mb-4" />
-            <h3 className="text-lg font-bold mb-2 ">Mark Zuckerberg</h3>
-            <p className="">The school taught me resilience and leadership skills I still use today</p>
-          </div>
-
-          {/* <!-- Card 2 --> */}
-          <div className="bg-gray-800 rounded-2xl shadow p-4 flex flex-col items-center text-center">
-            <img src={imageTwo} alt="Alumnus 2" className="w-32 h-32 rounded-full object-cover mb-4" />
-            <h3 className="text-lg font-bold mb-2 ">Jeff Bezos</h3>
-            <p className="">I met lifelong friends and learned the value of hard work here</p>
-          </div>
-
-          {/* <!-- Card 3 --> */}
-          <div className="bg-gray-800 rounded-2xl shadow p-4 flex flex-col items-center text-center">
-            <img src={imageThree} alt="Alumnus 3" className="w-32 h-32 rounded-full object-cover mb-4" />
-            <h3 className="text-lg font-bold mb-2 ">Elon Musk</h3>
-            <p className="">This school helped me discover my passion for science</p>
-          </div>
-
-          {/* <!-- Card 4 --> */}
-          <div className="bg-gray-800 rounded-2xl shadow p-4 flex flex-col items-center text-center">
-            <img src={imageFour} alt="Alumnus 4" className="w-32 h-32 rounded-full object-cover mb-4" />
-            <h3 className="text-lg font-bold mb-2 ">Satoshi Nakamoto</h3>
-            <p className="">I’ll always cherish the memories and supportive community</p>
-          </div>
+          {oldStudents.map((ob, index) => (
+            <div key={index} className="bg-gray-800 rounded-2xl shadow p-4 flex flex-col items-center text-center">
+              <img src={ob.image} alt="Alumnus 1" className="w-32 h-32 rounded-full object-cover mb-4" />
+              <h3 className="text-lg font-bold mb-2 ">{ob.name}</h3>
+              <p className="">{ob.testmonial}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
